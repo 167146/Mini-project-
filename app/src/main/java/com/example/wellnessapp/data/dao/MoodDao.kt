@@ -1,0 +1,14 @@
+package com.example.lunacare.data.dao
+
+import androidx.room.*
+import com.example.lunacare.data.entities.MoodEntry
+
+@Dao
+interface MoodDao {
+
+    @Insert
+    suspend fun insertMood(mood: MoodEntry)
+
+    @Query("SELECT * FROM moods WHERE userId = :userId ORDER BY date DESC")
+    suspend fun getUserMoods(userId: Int): List<MoodEntry>
+}
