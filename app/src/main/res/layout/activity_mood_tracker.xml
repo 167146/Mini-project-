@@ -1,7 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFF3F8"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="How are you feeling today?"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#7D3C98"
+        android:layout_marginBottom="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/happyButton"
+        android:text="😊 Happy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#A8E6CF"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/sadButton"
+        android:text="😢 Sad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#FF8C94"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/anxiousButton"
+        android:text="😟 Anxious"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#FFD3B6"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/gratefulButton"
+        android:text="🙏 Grateful"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFDAC1"
+        android:textColor="#000000"/>
 </LinearLayout>

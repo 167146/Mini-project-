@@ -2,6 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:padding="24dp"
+    android:background="#FFF3F8"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="Write your journal entry"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#7D3C98"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/journalEntry"
+        android:hint="Type here..."
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:background="@android:drawable/edit_text"
+        android:padding="12dp"/>
+
+    <Button
+        android:id="@+id/saveJournalButton"
+        android:text="Save Entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#A98EF5"
+        android:textColor="#FFFFFF"/>
 </LinearLayout>
