@@ -1,11 +1,12 @@
-package com.example.lunacare.data.database
+package com.example.wellnessapp.data.database
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
-import com.example.lunacare.data.dao.*
-import com.example.lunacare.data.entities.*
+import com.example.wellnessapp.data.dao.*
+import com.example.wellnessapp.data.entities.*
+
 
 @Database(
     entities = [User::class, MoodEntry::class, JournalEntry::class],

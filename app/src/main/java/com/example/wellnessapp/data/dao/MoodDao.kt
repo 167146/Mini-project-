@@ -1,4 +1,4 @@
-package com.example.lunacare.data.dao
+package com.example.wellnessapp.data.dao
 
 import androidx.room.*
 import com.example.lunacare.data.entities.MoodEntry

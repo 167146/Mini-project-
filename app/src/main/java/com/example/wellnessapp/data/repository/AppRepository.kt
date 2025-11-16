@@ -1,4 +1,4 @@
-package com.example.lunacare.data.repository
+package com.example.wellnessapp.data.repository
 
 import com.example.lunacare.data.dao.*
 import com.example.lunacare.data.entities.*

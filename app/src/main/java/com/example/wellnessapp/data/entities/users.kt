@@ -1,4 +1,4 @@
-package com.example.lunacare.data.entities
+package com.example.wellnessapp.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
