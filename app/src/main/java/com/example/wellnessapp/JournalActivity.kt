@@ -6,9 +6,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.lunacare.data.database.AppDatabase
-import com.example.lunacare.data.entities.JournalEntry
-import com.example.lunacare.data.repository.AppRepository
+import com.example.wellnessapp.data.database.AppDatabase
+import com.example.wellnessapp..data.entities.JournalEntry
+import com.example.wellnessapp.data.repository.AppRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

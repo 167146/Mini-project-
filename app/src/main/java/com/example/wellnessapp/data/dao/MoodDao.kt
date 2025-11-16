@@ -1,7 +1,7 @@
 package com.example.wellnessapp.data.dao
 
 import androidx.room.*
-import com.example.lunacare.data.entities.MoodEntry
+import com.example.wellnessapp.data.entities.MoodEntry
 
 @Dao
 interface MoodDao {

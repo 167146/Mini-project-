@@ -3,7 +3,7 @@ package com.example.wellnessapp.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.lunacare.data.entities.User
+import com.example.wellnessapp.data.entities.User
 
 @Dao
 interface UserDao {
