@@ -1,6 +1,8 @@
 package com.example.wellnessapp.data.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 import com.example.wellnessapp.data.entities.JournalEntry
 
 @Dao
@@ -10,5 +12,6 @@ interface JournalDao {
     suspend fun insertJournal(journal: JournalEntry)
 
     @Query("SELECT * FROM journal_entries WHERE userId = :userId ORDER BY date DESC")
-    suspend fun getUserJournals(userId: Int): List<JournalEntry>
+    fun getUserJournals(userId: Int): kotlinx.coroutines.flow.Flow<List<JournalEntry>>
 }
+

@@ -22,11 +22,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize DB + Repository
         val db = AppDatabase.getDatabase(this)
         repository = AppRepository(db.userDao(), db.moodDao(), db.journalDao())
 
-        // Match your XML IDs
         val emailInput = findViewById<EditText>(R.id.emailInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.loginButton)
@@ -41,20 +39,16 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Perform DB check in coroutine
             lifecycleScope.launch(Dispatchers.IO) {
-                val user = repository.getUserByEmail(email)
+                val user = repository.login(email, password)
 
                 withContext(Dispatchers.Main) {
-                    if (user != null && user.password == password) {
-
+                    if (user != null) {
                         Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
-
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.putExtra("USER_ID", user.id)
                         startActivity(intent)
                         finish()
-
                     } else {
                         Toast.makeText(this@LoginActivity, "Invalid email or password", Toast.LENGTH_SHORT).show()
                     }

@@ -22,6 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Mood Tracker -->
+        <activity
+            android:name=".MoodTrackerActivity"
+            android:exported="true" />
+
+        <!-- Journal -->
+        <activity
+            android:name=".JournalActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

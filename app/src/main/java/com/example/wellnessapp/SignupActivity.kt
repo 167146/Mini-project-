@@ -23,22 +23,15 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // Initialize DB + Repository
         val db = AppDatabase.getDatabase(this)
-        repository = AppRepository(
-            db.userDao(),
-            db.moodDao(),
-            db.journalDao()
-        )
+        repository = AppRepository(db.userDao(), db.moodDao(), db.journalDao())
 
-        // Get views
         val nameInput = findViewById<EditText>(R.id.nameInput)
         val emailInput = findViewById<EditText>(R.id.emailInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val signupButton = findViewById<Button>(R.id.signupButton)
         val loginLink = findViewById<TextView>(R.id.loginLink)
 
-        // Signup button action
         signupButton.setOnClickListener {
             val name = nameInput.text.toString().trim()
             val email = emailInput.text.toString().trim()
@@ -49,33 +42,26 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val newUser = User(
-                username = name,
-                email = email,
-                password = password
-            )
+            val newUser = User(username = name, email = email, password = password)
 
             lifecycleScope.launch {
-                saveUser(newUser)
+                val existingUser = withContext(Dispatchers.IO) {
+                    repository.getUserByEmail(email)
+                }
+
+                if (existingUser != null) {
+                    Toast.makeText(this@SignupActivity, "Email already registered", Toast.LENGTH_SHORT).show()
+                } else {
+                    withContext(Dispatchers.IO) { repository.registerUser(newUser) }
+                    Toast.makeText(this@SignupActivity, "Account created!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+                    finish()
+                }
             }
         }
 
-        // Link to login page
         loginLink.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-        }
-    }
-
-    private fun findViewById(nameInput: Any) {}
-
-    private suspend fun saveUser(user: User) {
-        withContext(Dispatchers.IO) {
-            repository.registerUser(user)
-        }
-
-        withContext(Dispatchers.Main) {
-            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
             finish()
         }
     }

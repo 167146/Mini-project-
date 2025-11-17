@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.wellnessapp.data.database.AppDatabase
-import com.example.wellnessapp..data.entities.JournalEntry
+import com.example.wellnessapp.data.entities.JournalEntry
 import com.example.wellnessapp.data.repository.AppRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,35 +22,25 @@ class JournalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_journal)
 
-        // Receive user ID
         userId = intent.getIntExtra("USER_ID", -1)
-
-        val db = AppDatabase.getDatabase(this)
-        repository = AppRepository(db.userDao(), db.moodDao(), db.journalDao())
 
         val journalInput = findViewById<EditText>(R.id.journalEntry)
         val saveButton = findViewById<Button>(R.id.saveJournalButton)
 
         saveButton.setOnClickListener {
             val text = journalInput.text.toString().trim()
-
             if (text.isEmpty()) {
                 Toast.makeText(this, "Please write something", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val journalEntry = JournalEntry(
-                userId = userId,
-                content = text,
-                timestamp = System.currentTimeMillis()
-            )
+            val entry = JournalEntry(userId = userId, title = "My Journal", content = text, date = System.currentTimeMillis())
 
             lifecycleScope.launch(Dispatchers.IO) {
-                repository.insertJournal(journalEntry)
-
+                repository.insertJournal(entry)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@JournalActivity, "Journal saved!", Toast.LENGTH_SHORT).show()
-                    finish() // closes journal and returns to previous screen
+                    finish()
                 }
             }
         }

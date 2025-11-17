@@ -1,12 +1,15 @@
 package com.example.wellnessapp.data.database
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
-import com.example.wellnessapp.data.dao.*
-import com.example.wellnessapp.data.entities.*
-
+import com.example.wellnessapp.data.dao.JournalDao
+import com.example.wellnessapp.data.dao.MoodDao
+import com.example.wellnessapp.data.dao.UserDao
+import com.example.wellnessapp.data.entities.JournalEntry
+import com.example.wellnessapp.data.entities.MoodEntry
+import com.example.wellnessapp.data.entities.User
 
 @Database(
     entities = [User::class, MoodEntry::class, JournalEntry::class],

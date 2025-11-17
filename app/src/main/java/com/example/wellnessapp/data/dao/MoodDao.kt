@@ -9,6 +9,7 @@ interface MoodDao {
     @Insert
     suspend fun insertMood(mood: MoodEntry)
 
-    @Query("SELECT * FROM moods WHERE userId = :userId ORDER BY date DESC")
-    suspend fun getUserMoods(userId: Int): List<MoodEntry>
+    @Query("SELECT * FROM moods WHERE userId = :userId ORDER BY timestamp DESC")
+    fun getUserMoods(userId: Int): kotlinx.coroutines.flow.Flow<List<MoodEntry>>
 }
+
